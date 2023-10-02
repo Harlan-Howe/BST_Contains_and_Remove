@@ -1,4 +1,4 @@
-from typing import Generic, TypeVar, List
+from typing import Generic, TypeVar
 
 T = TypeVar("T")
 
@@ -15,28 +15,28 @@ class TreeNode(Generic[T]):
     def has_right(self) -> bool:
         return self.right is not None
 
-    def print(self, indentation_level:int =0) :
+    def print(self, indentation_level: int = 0) -> None:
         """
-     3   prints out the tree in a tree-like format, in reverse in-order, so that if you turn your head, it looks like a normal tree.
+        prints out the tree in a tree-like format, in reverse in-order, so that if you turn your head, it looks like a
+        normal tree.
         :param indentation_level: the number of tabs before this subtree is printed.
         :return: None
         """
-        result = ""
+
         if self.has_right():
-            self.right.print(indentation_level = indentation_level+1)
+            self.right.print(indentation_level=indentation_level+1)
 
         print("\t"*indentation_level+self.value)
 
         if self.has_left():
-            self.left.print(indentation_level = indentation_level+1)
-
+            self.left.print(indentation_level=indentation_level+1)
 
 
 class BST(Generic[T]):
     def __init__(self):
         self.root = None
 
-    def printTree(self):
+    def print_tree(self):
         """
         prints out a "tree-like" arrangement of this tree. (Turn your head 90 CCW (or the laptop 90 CW) to see.)
         :return: None
@@ -46,7 +46,7 @@ class BST(Generic[T]):
         else:
             self.root.print()
 
-    def add(self, value:T) -> bool:
+    def add(self, value: T) -> bool:
         """
         Adds a new node with value in it to this tree
         :param value:  the value to add
@@ -58,29 +58,30 @@ class BST(Generic[T]):
             self.root = TreeNode(value)
             return True
         else:
-            return self.add_to_subtree(value,self.root)
+            return self.add_to_subtree(value, self.root)
 
-    def add_to_subtree(self, value: T, subRoot: TreeNode[T]) -> bool:
+    def add_to_subtree(self, value: T, sub_root: TreeNode[T]) -> bool:
         """
         Internal, recursive method for adding a value to a tree with a subroot in order.
         :param value: The value to add
-        :param subRoot: the root of the subtree to which to add it.
-        :return: None
+        :param sub_root: the root of the subtree to which to add it.
+        :return: Whether we successfully added a non-duplicated item.
         """
-        if value < subRoot.value:
-            if subRoot.has_left():
-                return self.add_to_subtree(value, subRoot.left)
+        if value < sub_root.value:
+            if sub_root.has_left():
+                return self.add_to_subtree(value, sub_root.left)
             else:
-                subRoot.left = TreeNode(value)
+                sub_root.left = TreeNode(value)
                 return True
-        elif value > subRoot.value:
-            if subRoot.has_right():
-                return self.add_to_subtree(value, subRoot.right)
+        elif value > sub_root.value:
+            if sub_root.has_right():
+                return self.add_to_subtree(value, sub_root.right)
             else:
-                subRoot.right = TreeNode(value)
+                sub_root.right = TreeNode(value)
                 return True
         else:
-            return False
+            return False  # In this particular implementation, we will have no duplicates.
+
     def __repr__(self):
         """
         returns a string representing the words in this list, in order.
@@ -100,12 +101,11 @@ class BST(Generic[T]):
 
         return result
 
-
-    def __contains__(self, item:T) -> bool:
+    def __contains__(self, item: T) -> bool:
         """
-        determines whether or not this item is contained in the tree already.
+        determines whether this item is contained in the tree already.
         :param item: the item to search for
-        :return: whether or not the item is in this tree.
+        :return: whether the item is in this tree.
         """
         # ------------------------
         # TODO: You write this!
@@ -113,12 +113,12 @@ class BST(Generic[T]):
         # ------------------------
         return False
 
-    def removeItem(self, item:T) -> bool:
+    def remove_item(self, item: T) -> bool:
         """
         removes the item (if contained in this BST) from the tree, leaving the tree as a BST.
         :param item: item to remove.
         :return: whether an item was removed.
-        Postcondition: the BST is still correctly ordered as a BST. If returning True, the size of the BST is
+        postcondition: the BST is still correctly ordered as a BST. If returning True, the size of the BST is
         reduced by one; if returning false, BST is unchanged.
         """
         if item not in self:
@@ -128,10 +128,10 @@ class BST(Generic[T]):
 
         # first, find the node to remove and its parent.
 
-        # once you have that node, find which node should replace it, and set up any connections.
+        # once you have that node, find which node should replace it, and set up any connections. This will depend on
+        #  the number of child subtrees.
 
-        # once you have the replacement node, disconnect it from the tree around it, and put it in the place of the
+        # once you have the replacement node, disconnect it from the surrounding tree, and put it in the place of the
         #   node you are removing.
-
 
         return True
