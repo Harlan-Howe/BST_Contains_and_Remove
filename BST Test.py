@@ -2,6 +2,7 @@ import unittest
 
 from BST import BST
 
+
 class BSTTestCase(unittest.TestCase):
     def setUp(self):
         """
@@ -10,24 +11,25 @@ class BSTTestCase(unittest.TestCase):
         """
         print("Setting up.")
         self.BST1 = BST()
-        self.BST1.add("magenta");
-        self.BST1.add("green");
-        self.BST1.add("orange");
-        self.BST1.add("blue");
-        self.BST1.add("yellow");
-        self.BST1.add("turquoise");
-        self.BST1.add("teal");
-        self.BST1.add("black");
-        self.BST1.add("pink");
-        self.BST1.add("white");
-        self.BST1.add("purple");
-        self.BST1.add("gold");
+        self.BST1.add("magenta")
+        self.BST1.add("green")
+        self.BST1.add("orange")
+        self.BST1.add("blue")
+        self.BST1.add("yellow")
+        self.BST1.add("turquoise")
+        self.BST1.add("teal")
+        self.BST1.add("black")
+        self.BST1.add("pink")
+        self.BST1.add("white")
+        self.BST1.add("purple")
+        self.BST1.add("gold")
 
     def test0_repr(self):
         print("============================ Test 0:")
         print("Checking that our tree loaded correctly and represents the alphabetized list.")
         self.BST1.print_tree()
-        self.assertEqual("[black, blue, gold, green, magenta, orange, pink, purple, teal, turquoise, white, yellow]", self.BST1.__repr__())
+        self.assertEqual("[black, blue, gold, green, magenta, orange, pink, purple, teal, turquoise, white, yellow]",
+                         self.BST1.__repr__())
 
     def test1_duplicate_managed(self):
         print("============================ Test 1:")
@@ -43,7 +45,7 @@ class BSTTestCase(unittest.TestCase):
         print("============================ Test 2:")
         print("Checking whether items are in the tree or not.")
         self.assertTrue(self.BST1.__contains__("magenta"))
-        self.assertTrue("magenta" in self.BST1) # "in" is alternate way of calling special method __contains__
+        self.assertTrue("magenta" in self.BST1)  # "in" is an alternative way of calling special method __contains__
         self.assertTrue("gold" in self.BST1)
         self.assertTrue("teal" in self.BST1)
         self.assertTrue("purple" in self.BST1)
@@ -61,25 +63,26 @@ class BSTTestCase(unittest.TestCase):
                          "BST contents should be unchanged.")
 
     def test4_remove_leaf(self):
-        print ("============================ Test 4:")
+        print("============================ Test 4:")
         self.BST1.print_tree()
         print("Removing 'gold.'")
-        self.assertTrue(self.BST1.remove_item("gold"), "Removing 'gold' should return true.");
+        self.assertTrue(self.BST1.remove_item("gold"), "Removing 'gold' should return true.")
         self.BST1.print_tree()
         self.assertEqual("[black, blue, green, magenta, orange, pink, purple, teal, turquoise, white, yellow]",
                          self.BST1.__repr__(),
                          "BST contents should only be missing gold.")
         print("Removing 'purple.")
-        self.assertTrue(self.BST1.remove_item("purple"));
+        self.assertTrue(self.BST1.remove_item("purple"))
         self.BST1.print_tree()
-        self.assertEqual("[black, blue, green, magenta, orange, pink, teal, turquoise, white, yellow]",self.BST1.__repr__())
+        self.assertEqual("[black, blue, green, magenta, orange, pink, teal, turquoise, white, yellow]",
+                         self.BST1.__repr__())
 
     def test5_remove_last_item_from_tree(self):
         print("============================ Test 5:")
         BST2 = BST()
         BST2.add("aquamarine")
         self.assertTrue(BST2.remove_item("aquamarine"))
-        self.assertEqual("[]",BST2.__repr__())
+        self.assertEqual("[]", BST2.__repr__())
 
     def test6_remove_node_with_one_child(self):
         print("============================ Test 6:")
@@ -87,12 +90,14 @@ class BSTTestCase(unittest.TestCase):
         print("Removing 'pink.'")
         self.assertTrue(self.BST1.remove_item("pink"))
         self.BST1.print_tree()
-        self.assertEqual("[black, blue, gold, green, magenta, orange, purple, teal, turquoise, white, yellow]", self.BST1.__repr__())
+        self.assertEqual("[black, blue, gold, green, magenta, orange, purple, teal, turquoise, white, yellow]",
+                         self.BST1.__repr__())
 
         print("Removing 'orange.'")
         self.assertTrue(self.BST1.remove_item("orange"))
         self.BST1.print_tree()
-        self.assertEqual("[black, blue, gold, green, magenta, purple, teal, turquoise, white, yellow]", self.BST1.__repr__())
+        self.assertEqual("[black, blue, gold, green, magenta, purple, teal, turquoise, white, yellow]",
+                         self.BST1.__repr__())
 
         print("Removing 'green.'")
         self.assertTrue(self.BST1.remove_item("green"))
